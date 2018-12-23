@@ -28,6 +28,10 @@
             {name:4,price:4},
             {name:5,price:75},
             {name:6,price:15},
+            {name:4,price:4},
+            {name:5,price:75},
+            {name:6,price:15},
+
             ]
         }
       }
