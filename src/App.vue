@@ -2,12 +2,19 @@
   <div id="app">
     <!--<img src="./assets/logo.png">-->
     <router-view/>
+    <!--<Mheader></Mheader>-->
   </div>
 </template>
 
 <script>
+
+  import Mheader from './components/Header'
 export default {
-  name: 'App'
+  name: 'App',
+
+  components:{
+    Mheader
+  }
 }
 </script>
 
