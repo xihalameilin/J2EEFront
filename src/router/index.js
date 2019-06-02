@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import home from '@/components/Home'
 import login from '@/components/Login'
 import register from '@/components/Register'
+import main from '@/components/Main'
 import address from '@/components/Address'
 import goodsview from '@/components/GoodsView'
 import requestortag from '@/components/RequestorTag'
@@ -43,6 +44,11 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: register
+    },
+    {
+      path: '/main',
+      name: 'main',
+      component: main
     },
     {
       path: '/address',
