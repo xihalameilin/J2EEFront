@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import login from '@/components/Login2'
+import home from '@/components/Home'
+import login from '@/components/Login'
+import register from '@/components/Register'
+import address from '@/components/Address'
 import goodsview from '@/components/GoodsView'
 import requestortag from '@/components/RequestorTag'
 import shopcreate from '@/components/ShopCreate'
@@ -22,19 +24,40 @@ import analysis from '@/components/Analysis'
 
 import test from '@/components/test'
 
+
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'helloworld',
+      name: 'home',
+      component: home
+    },
+    {
+      path: '/login',
+      name: 'login',
       component: login
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: register
+    },
+    {
+      path: '/address',
+      name: 'address',
+      component: address
     },
     {
       path: '/test',
       name: 'test',
       component: test
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: home
     },
     {
       path: '/goods',

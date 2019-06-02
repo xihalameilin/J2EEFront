@@ -1,21 +1,15 @@
 <template>
   <div id="app">
-    <!--<img src="./assets/logo.png">-->
     <router-view/>
     <!--<Mheader></Mheader>-->
   </div>
 </template>
 
 <script>
+  export default {
 
-  import Mheader from './components/Header'
-export default {
-  name: 'App',
 
-  components:{
-    Mheader
   }
-}
 </script>
 
 <style>
