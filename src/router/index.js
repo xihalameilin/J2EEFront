@@ -21,7 +21,7 @@ import checkIII from '@/components/CheckIII'
 import analysis from '@/components/Analysis'
 
 import test from '@/components/test'
-
+import shopDetail from '@/components/ShopDetail'
 Vue.use(Router)
 
 export default new Router({
@@ -29,7 +29,7 @@ export default new Router({
     {
       path: '/',
       name: 'helloworld',
-      component: login
+      component: shopDetail
     },
     {
       path: '/test',
@@ -124,7 +124,12 @@ export default new Router({
         {
           path:'*',
           redirect:'/order'
-        }
+        },
+        // {
+        //   path: '/shopdetail',
+        //   name: 'shopDetail',
+        //   component: shopDetail
+        // },
       ]
     }
   ]
