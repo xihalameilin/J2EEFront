@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import login from '@/components/Login2'
 import goodsview from '@/components/GoodsView'
 import requestortag from '@/components/RequestorTag'
 import shopcreate from '@/components/ShopCreate'
@@ -22,19 +21,71 @@ import analysis from '@/components/Analysis'
 
 import test from '@/components/test'
 
+import main from '@/components/Main'
+
+import login from '@/components/Login'
+import register from '@/components/Register'
+import mainPage from '@/components/MainPage'
+import home from '@/components/Home'
+
+import address from '@/components/Address'
+import shopdetail from '@/components/ShopDetail'
+import personalcenter from '@/components/PersonalCenter'
+import personalOrder from '@/components/PersonalOrder'
+
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'helloworld',
+      name: 'home',
+      component: home
+    },
+    {
+      path: '/shopdetail',
+      name: 'shopdetail',
+      component: shopdetail
+    },
+    {
+      path:'/personalorder',
+      name:'personalorder',
+      component:personalOrder
+    },
+    {
+      path:'/personalcenter',
+      name:'personalcenter',
+      component:personalcenter
+    },
+    {
+      path: '/address',
+      name: 'address',
+      component: address
+    },
+    {
+      path: '/login',
+      name: 'login',
       component: login
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: register
+    },
+    {
+      path: '/mainPage',
+      name: 'mainPage',
+      component: mainPage
     },
     {
       path: '/test',
       name: 'test',
       component: test
+    },
+    {
+      path: '/main',
+      name: 'main',
+      component: main
     },
     {
       path: '/goods',

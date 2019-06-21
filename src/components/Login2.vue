@@ -574,7 +574,6 @@
         }).then(function (response) {
           m.$Message.success("发送成功");
         })
-
         this.wait()
       },
 
