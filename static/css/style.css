@@ -1,0 +1,184 @@
+.href{
+    font-size: 18px;
+    font-family: FangSun;
+    color: white;
+    text-decoration:none;
+    cursor: pointer;
+}
+.href:hover{
+    text-decoration:underline;
+}
+.href1{
+    font-size: 18px;
+    font-family: FangSun;
+    color: #008de1;
+    text-decoration:none;
+    cursor: pointer;
+}
+.href1:hover{
+    text-decoration:underline;
+}
+.button1{
+    font-size: 15px;
+    color: white;
+    background-color: #5db423;
+    border:1px;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+.button2{
+    font-size: 18px;
+    color: white;
+    background-color: #4cd96f;
+    border:2px;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+}
+.button3{
+    font-size: 15px;
+    color: #646464;
+    background-color: #d0d0d0;
+    border:1px;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+.button4{
+    font-size: 18px;
+    color: #8f8f8f;
+    background-color: white;
+    border:1px;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+.button4:hover{
+    background-color: #ebebeb;
+}
+.input{
+    border: 1px solid rgba(197, 196, 198, 0.53);
+    padding-left: 20px;
+    padding-right: 100px;
+    font-size: 18px;
+    background-color: white;
+    border-radius: 5px;
+    outline: none;
+}
+.input1{
+    border: 1px solid rgba(197, 196, 198, 0.53);
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 18px;
+    background-color: white;
+    border-radius: 5px;
+    outline: none;
+}
+.longTxt{
+    color: rgb(127, 127, 135);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 10; /*最大行数*/
+    -webkit-box-orient: vertical;
+}
+.select{
+    border: 1px solid rgba(197, 196, 198, 0.53);
+    padding-left: 20px;
+    padding-right: 100px;
+    font-size: 18px;
+    background-color: white;
+    border-radius: 5px;
+    outline: none;
+}
+.textarea{
+    border: 1px solid rgba(197, 196, 198, 0.53);
+    padding: 20px;
+    font-size: 18px;
+    font-family: FangSun;
+    background-color: white;
+    border-radius: 5px;
+    outline: none;
+}
+.but-div{
+    color:black;
+    text-align:center;
+    margin:0;
+    padding:0;
+    font-size: 20px;
+    font-family:arial,tahoma,'Microsoft Yahei','\5b8b\4f53',sans-serif;
+    cursor: pointer;
+}
+.but-div:hover{
+    color: #008de1;
+}
+.font{
+    color:black;
+    margin:0;
+    padding:0;
+    font-size: 20px;
+    font-family:arial,tahoma,'Microsoft Yahei','\5b8b\4f53',sans-serif;
+}
+.font1{
+    color: #565656;
+    margin:0;
+    padding:0;
+    font-size: 20px;
+    font-family:arial,tahoma,'Microsoft Yahei','\5b8b\4f53',sans-serif;
+    word-wrap: break-word;
+    word-break: normal;
+}
+.font2{
+    color:red;
+    margin:0;
+    padding:0;
+    font-size: 20px;
+    font-family:arial,tahoma,'Microsoft Yahei','\5b8b\4f53',sans-serif;
+}
+.font3{
+    font-size: 16px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;/*加宽度width属来兼容部分浏览*/
+}
+.shadow{
+    box-shadow: #666 1px 4px 10px;
+    background: white;
+}
+.overflow{
+    overflow: auto;
+    overflow-x:hidden;
+}
+.bar{
+    background-color:#008de1;
+    text-align:center;
+    margin:0;
+    padding:0;
+    font-size: 20px;
+    font-family:arial,tahoma,'Microsoft Yahei','\5b8b\4f53',sans-serif;
+    cursor: pointer;
+}
+.bar:hover{
+    background-color:#006bc7;
+}
+.storeDiv{
+    color: black;
+    background-color:white;
+    border: 1px solid #e1e1e1;
+    margin:0;
+    padding:0;
+    font-size: 18px;
+    font-family:arial,tahoma,'Microsoft Yahei','\5b8b\4f53',sans-serif;
+    cursor: pointer;
+}
+
+.storeDiv:hover{
+    color: #008de1;
+    background-color: #dbdbdb;
+}
+.starIcon{
+    color: #ff9f3a;
+    font-size: 18px;
+    font-family:arial,tahoma,'Microsoft Yahei','\5b8b\4f53',sans-serif;
+}
