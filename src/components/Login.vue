@@ -21,13 +21,21 @@
         login:function(){
           var name = document.getElementById("name").value;
           var password = document.getElementById("password").value;
+          var self = this;
           if(name == ""){
             this.$Message.error("用户名不能为空！");
           }else if(password == ""){
             this.$Message.error("密码不能为空！");
           }else {
-            this.$http.get('api/LoginController/login/' + name + "/" + password, {}).then(function (response) {
-
+            this.$http.get('api/UserController/login/' + name + "/" + password, {}).then(function (response) {
+              if(response.data == -1){
+                self.$Message.error("用户名或密码错误！");
+              }else{
+                self.$Message.success("登录成功");
+                self.$setCookie("userID",response.data);
+                self.$setCookie("userName",name);
+                self.$router.push("/mainPage");
+              }
             })
           }
         },

@@ -5,14 +5,17 @@ import App from './App'
 import router from './router'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
+
 import axios from 'axios'
 import '../static/css/style.css'
+
 
 Vue.use(iView);
 
 Vue.config.productionTip = false
 
 Vue.prototype.$http=axios
+
 
 Vue.prototype.$setCookie=function setCookie(cname,cvalue,exmins){
   var d = new Date();
@@ -32,6 +35,8 @@ Vue.prototype.$getCookie=function getCookie(cname){
   }
   return "";
 }
+
+
 
 /* eslint-disable no-new */
 new Vue({

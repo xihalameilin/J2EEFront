@@ -3,16 +3,16 @@
       <bar></bar>
       <div style="position:absolute;width:15%;height:80%;left:0;margin-top: 70px;"  >
         <Icon style="position:absolute;left:12%;top:3%;color: #696969" type="md-home" size="25"/>
-        <p onclick="showPerson()" class="title1" style="position:absolute;left:30%;top:3%;cursor: pointer">个人中心</p>
+        <p @click="showPerson()" class="title1" style="position:absolute;left:30%;top:3%;cursor: pointer">个人中心</p>
 
         <Icon style="position:absolute;left:12%;top:15%;color: #696969" type="md-copy" size="25"/>
         <p class="title1" style="position:absolute;left:30%;top:15%;">我的订单</p>
-        <p onclick="showOrder()" class="title2" style="position:absolute;left:30%;top:23%;">近三个月订单</p>
+        <p @click="showOrder()" class="title2" style="position:absolute;left:30%;top:23%;">近三个月订单</p>
 
         <Icon style="position:absolute;left:12%;top:35%;color: #696969" type="md-person" size="25"/>
         <p class="title1" style="position:absolute;left:30%;top:35%;">我的资料</p>
-        <p onclick="showPersonInfo()" class="title2" style="position:absolute;left:30%;top:43%;">个人资料</p>
-        <p onclick="showAddress()" class="title2" style="position:absolute;left:30%;top:51%;">地址管理</p>
+        <p @click="showPersonInfo()" class="title2" style="position:absolute;left:30%;top:43%;">个人资料</p>
+        <p @click="showAddress()" class="title2" style="position:absolute;left:30%;top:51%;">地址管理</p>
 
         <Icon style="position:absolute;left:12%;top:63%;color: #696969" type="logo-usd" size="25"/>
         <p class="title1" style="position:absolute;left:30%;top:63%;">我的资产</p>
@@ -36,13 +36,13 @@
         }
       },
       methods:{
-        showPerson:function(){
-
+        showPerson(){
+          this.$router.push("/personalcenter")
         },
-        showOrder:function(){
-
+        showOrder(){
+          this.$router.push("/personalorder")
         },
-        showPersonInfo:function(){
+        showPersonInfo(){
 
         },
         showAddress:function(){

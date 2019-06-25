@@ -1,10 +1,10 @@
 <template>
   <div style="position:absolute;left:0%;top:0;width:100%;height:11%;background-color: #008de1">
     <strong style="position:absolute;left:5%;top:8%;font-size: 35px;color: white;cursor: pointer">Yummy</strong>
-    <div onclick="" class="bar" style="position:absolute;left:20%;top:0;width:15%;height:100%">
+    <div @click="jumpTo('mainPage')" class="bar" style="position:absolute;left:20%;top:0;width:15%;height:100%">
       <p style="position: absolute;top:25%;left:40%;font-size: 20px;color: white">首页</p>
     </div>
-    <div onclick="" class="bar" style="position:absolute;left:35%;top:0;width:15%;height:100%">
+    <div @click="jumpTo('myOrder')" class="bar" style="position:absolute;left:35%;top:0;width:15%;height:100%">
       <p style="position: absolute;top:25%;left:30%;font-size: 20px;color: white">我的订单</p>
     </div>
     <div class="bar" style="position:absolute;left:50%;top:0;width:15%;height:100%">
@@ -22,7 +22,6 @@
         <DropdownMenu slot="list" style="z-index: 20" v-show="flag">
           <DropdownItem name="person" ><Icon type="md-person" size="20"/>个人中心</DropdownItem>
           <DropdownItem name="order"><Icon type="md-reorder" size="20"/>我的订单</DropdownItem>
-          <DropdownItem name="info"><Icon type="ios-bookmark" size="20"/>个人资料</DropdownItem>
           <DropdownItem name="address"><Icon type="ios-navigate" size="20"/>我的地址</DropdownItem>
           <DropdownItem name="logout" divided><Icon type="md-settings" size="20"/>退出登录</DropdownItem>
         </DropdownMenu>
@@ -42,15 +41,21 @@
       data(){
         return{
           flag:false,
-          userID:""
+          userName:""
         }
       },
       methods:{
+        jumpTo(page){
+          if(page == "mainPage") {
+            this.$router.push("/mainPage")
+          }else if(page == "myOrder"){
+            this.$router.push("/order")
+          }
+        },
         init:function(){
-          this.$setCookie("userID","sulphur",15);
-          var userid = this.$getCookie("userID");
-          if(userid != ""){
-            this.userID = userid;
+          var userName = this.$getCookie("userName");
+          if(userName != ""){
+            this.userID = userName;
             this.flag = true;
           }else{
             this.$router.push("/login");
@@ -58,15 +63,14 @@
         },
         showMenu:function(name){
           if(name == "person"){
-
+            this.$router.push("/personalcenter")
           }else if(name == "order"){
-
-          }else if(name == "info"){
-
+            this.$router.push(("/personalorder"))
           }else if(name == "address"){
-
+            this.$router.push("/address");
           }else{
             this.$setCookie("userID","",24*60);
+            this.$setCookie("userName","",24*60);
             this.$router.push("/login");
           }
         }

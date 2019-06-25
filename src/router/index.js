@@ -1,10 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import home from '@/components/Home'
-import login from '@/components/Login'
-import register from '@/components/Register'
-import main from '@/components/Main'
-import address from '@/components/Address'
+import HelloWorld from '@/components/HelloWorld'
 import goodsview from '@/components/GoodsView'
 import requestortag from '@/components/RequestorTag'
 import shopcreate from '@/components/ShopCreate'
@@ -25,6 +21,19 @@ import analysis from '@/components/Analysis'
 
 import test from '@/components/test'
 
+import main from '@/components/Main'
+
+import login from '@/components/Login'
+import register from '@/components/Register'
+import mainPage from '@/components/MainPage'
+import home from '@/components/Home'
+
+import address from '@/components/Address'
+import shopdetail from '@/components/ShopDetail'
+import personalcenter from '@/components/PersonalCenter'
+import personalOrder from '@/components/PersonalOrder'
+
+import checkout from '@/components/Checkout'
 
 Vue.use(Router)
 
@@ -34,6 +43,31 @@ export default new Router({
       path: '/',
       name: 'home',
       component: home
+    },
+    {
+      path: '/checkout',
+      name: 'checkout',
+      component: checkout
+    },
+    {
+      path: '/shopdetail',
+      name: 'shopdetail',
+      component: shopdetail
+    },
+    {
+      path:'/personalorder',
+      name:'personalorder',
+      component:personalOrder
+    },
+    {
+      path:'/personalcenter',
+      name:'personalcenter',
+      component:personalcenter
+    },
+    {
+      path: '/address',
+      name: 'address',
+      component: address
     },
     {
       path: '/login',
@@ -46,14 +80,9 @@ export default new Router({
       component: register
     },
     {
-      path: '/main',
-      name: 'main',
-      component: main
-    },
-    {
-      path: '/address',
-      name: 'address',
-      component: address
+      path: '/mainPage',
+      name: 'mainPage',
+      component: mainPage
     },
     {
       path: '/test',
@@ -61,9 +90,9 @@ export default new Router({
       component: test
     },
     {
-      path: '/home',
-      name: 'home',
-      component: home
+      path: '/main',
+      name: 'main',
+      component: main
     },
     {
       path: '/goods',
