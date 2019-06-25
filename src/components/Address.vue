@@ -1,5 +1,5 @@
 <template>
-    <div style="background-color: #f5f5f5" :style="{height: mapHeight}">
+    <div>
       <person-bar></person-bar>
 
       <div style="position: absolute;width:80%;height:80%;left:15%;top:15%;background-color: white">
@@ -38,11 +38,8 @@
       components:{
         personBar
       },
-      computed: {
-        //计算浏览器的高度
-        mapHeight() {
-          return document.documentElement.scrollHeight +'px'
-        }
+      mounted(){
+        document.querySelector('body').setAttribute('style', 'background-color:#f7f7f7');
       },
       created(){
         this.getAllAddress()
