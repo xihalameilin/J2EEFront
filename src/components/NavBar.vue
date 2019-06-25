@@ -1,10 +1,10 @@
 <template>
   <div style="position:absolute;left:0%;top:0;width:100%;height:11%;background-color: #008de1">
     <strong style="position:absolute;left:5%;top:8%;font-size: 35px;color: white;cursor: pointer">Yummy</strong>
-    <div @click="mainp" class="bar" style="position:absolute;left:20%;top:0;width:15%;height:100%">
+    <div @click="jumpTo('mainPage')" class="bar" style="position:absolute;left:20%;top:0;width:15%;height:100%">
       <p style="position: absolute;top:25%;left:40%;font-size: 20px;color: white">首页</p>
     </div>
-    <div onclick="" class="bar" style="position:absolute;left:35%;top:0;width:15%;height:100%">
+    <div @click="jumpTo('myOrder')" class="bar" style="position:absolute;left:35%;top:0;width:15%;height:100%">
       <p style="position: absolute;top:25%;left:30%;font-size: 20px;color: white">我的订单</p>
     </div>
     <div class="bar" style="position:absolute;left:50%;top:0;width:15%;height:100%">
@@ -45,8 +45,12 @@
         }
       },
       methods:{
-        mainp(){
-          this.$router.push("/mainpage")
+        jumpTo(page){
+          if(page == "mainPage") {
+            this.$router.push("/mainPage")
+          }else if(page == "myOrder"){
+            this.$router.push("/order")
+          }
         },
         init:function(){
           var userName = this.$getCookie("userName");

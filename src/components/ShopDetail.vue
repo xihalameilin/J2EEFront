@@ -61,8 +61,6 @@
     components:{
       ShoppingCart
     },
-    name: "ShopDetail",
-
     created(){
       this.getAllDishes()
     },
@@ -76,6 +74,7 @@
       return {
         //购物车
         shopID:"",
+        shopName:"",
         shopCart:[],
         orderItems:[],
         note: {
@@ -93,6 +92,7 @@
     },
     created(){
       this.shopID=this.$route.params.id
+      this.shopName = this.$route.params.name
       this.getAllDishes()
     },
     methods: {
@@ -101,6 +101,7 @@
         var shopID= this.shopID
         var userID = this.$getCookie("userID")
         var address = "nju"
+        var name = this.shopName
         var total = 0;
         for(var i=0;i<this.orderItems.length;i++){
           total+=this.orderItems[i]['total']
@@ -114,6 +115,7 @@
             "shopID":shopID,
             "userID":userID,
             "address":address,
+            "name":name,
             "total":total,
             "orderItems":self.orderItems
           })

@@ -33,6 +33,8 @@ import shopdetail from '@/components/ShopDetail'
 import personalcenter from '@/components/PersonalCenter'
 import personalOrder from '@/components/PersonalOrder'
 
+import checkout from '@/components/Checkout'
+
 Vue.use(Router)
 
 export default new Router({
@@ -41,6 +43,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: home
+    },
+    {
+      path: '/checkout',
+      name: 'checkout',
+      component: checkout
     },
     {
       path: '/shopdetail',

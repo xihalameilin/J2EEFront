@@ -21,7 +21,7 @@
       </div>
       <!店铺信息展示-->
       <div id="showStoreDiv" style="position:absolute;left:5%;top:52%;width:90%;height:80%;background-color: white;">
-        <div v-for="item in storeList" style="float:left;width:25%;height:30%;" @click="jumpToDetail(item.shopID)">
+        <div v-for="item in storeList" style="float:left;width:25%;height:30%;" @click="jumpToDetail(item.shopID,item.name)">
           <div @mouseenter="showStoreDialog($event,item.shopID)" @mouseleave="unshowStoreDialog" class="storeDiv" title="麻辣香锅南京店" style="position:absolute;margin-left:0;margin-top:0;width:25%;height:30%">
             <img :src="item.url" style="position:absolute;left:8%;top:15%;width:30%;height:55%"/>
             <strong class="font3" style="position:absolute;left:45%;top:15%;width:45%">{{item.name}}</strong>
@@ -71,11 +71,12 @@
         }
       },
       methods:{
-        jumpToDetail(id){
+        jumpToDetail(id,name){
           this.$router.push({
             name:'shopdetail',
             params:{
-              id:id
+              id:id,
+              name:name
             }
           })
         },

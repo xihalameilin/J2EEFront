@@ -16,7 +16,7 @@
     </div>
 
     <Drawer @on-close="DrawerClose" :mask-style="maskStyle" :closable="false" :scrollable="true" :mask="true" title="购物车" width="18" v-model="value4">
-
+      <Table :data="ShoppingCartdata" :columns="columns" stripe></Table>
     </Drawer>
   </div>
 </template>
@@ -27,6 +27,20 @@
         name:"ShoppingCart",
         value4: false,
         ShoppingCartdata:[],//购物车数据
+        columns:[
+          {
+            title:'名称',
+            key:'name'
+          },
+          {
+            title:'价格',
+            key:'price'
+          },
+          {
+            title:'数量',
+            key:'num'
+          }
+        ],
         pStyle: {
           fontSize: '16px',
           color: 'rgba(0,0,0,0.85)',
@@ -55,14 +69,14 @@
     },
     created(){
       //显示购物车中的内容
-      this.ShoppingCartdata=this.$getCookie("orderItems")
+      //this.ShoppingCartdata=JSON.parse(this.$getCookie("orderItems"))
     },
     methods:{
       ButtonClick(){
         this.value4=true
         let m =document.getElementById("Shopping")
         m.style.marginLeft= '80.4%'
-        this.ShoppingCartdata = this.$getCookie("orderItems")
+        this.ShoppingCartdata = JSON.parse(this.$getCookie("orderItems"))
         console.log(this.ShoppingCartdata)
       },
       DrawerClose(){
