@@ -72,6 +72,8 @@
       },
       methods:{
         jumpToDetail(id,name){
+          this.$setCookie("shopname",name)
+          this.$setCookie("shopID",id)
           this.$router.push({
             name:'shopdetail',
             params:{

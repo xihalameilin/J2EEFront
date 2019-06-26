@@ -7,10 +7,10 @@
     <div @click="jumpTo('myOrder')" class="bar" style="position:absolute;left:35%;top:0;width:15%;height:100%">
       <p style="position: absolute;top:25%;left:30%;font-size: 20px;color: white">我的订单</p>
     </div>
-    <div class="bar" style="position:absolute;left:50%;top:0;width:15%;height:100%">
+    <div @click="warningMessage" class="bar" style="position:absolute;left:50%;top:0;width:15%;height:100%">
       <p style="position: absolute;top:25%;left:30%;font-size: 20px;color: white">加盟合作</p>
     </div>
-    <div class="bar" style="position:absolute;left:65%;top:0;width:15%;height:100%">
+    <div @click="warningMessage" class="bar" style="position:absolute;left:65%;top:0;width:15%;height:100%">
       <p style="position: absolute;top:25%;left:30%;font-size: 20px;color: white">我的客服</p>
     </div>
     <div style="position:absolute;left:85%;top:30%;width:10%;height:100%" >
@@ -49,7 +49,7 @@
           if(page == "mainPage") {
             this.$router.push("/mainPage")
           }else if(page == "myOrder"){
-            this.$router.push("/order")
+            this.$router.push("/personalorder")
           }
         },
         init:function(){
@@ -73,6 +73,9 @@
             this.$setCookie("userName","",24*60);
             this.$router.push("/login");
           }
+        },
+        warningMessage:function(){
+          this.$Message.warning("暂未开放，敬请期待");
         }
       }
     }

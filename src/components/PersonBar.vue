@@ -16,9 +16,9 @@
 
         <Icon style="position:absolute;left:12%;top:63%;color: #696969" type="logo-usd" size="25"/>
         <p class="title1" style="position:absolute;left:30%;top:63%;">我的资产</p>
-        <p class="title2" style="position:absolute;left:30%;top:71%;">我的红包</p>
-        <p class="title2" style="position:absolute;left:30%;top:79%;">账户余额</p>
-        <p class="title2" style="position:absolute;left:30%;top:87%;">我的金币</p>
+        <p @click="warningMessage" class="title2" style="position:absolute;left:30%;top:71%;">我的红包</p>
+        <p @click="warningMessage" class="title2" style="position:absolute;left:30%;top:79%;">账户余额</p>
+        <p @click="warningMessage" class="title2" style="position:absolute;left:30%;top:87%;">我的金币</p>
       </div>
     </div>
 </template>
@@ -43,11 +43,14 @@
           this.$router.push("/personalorder")
         },
         showPersonInfo(){
-
+          this.$router.push("/personalcenter")
         },
         showAddress:function(){
-
+          this.$router.push("/address")
         },
+        warningMessage:function(){
+          this.$Message.warning("暂未开放，敬请期待");
+        }
       }
     }
 </script>

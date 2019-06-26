@@ -16,7 +16,12 @@
     </div>
 
     <Drawer @on-close="DrawerClose" :mask-style="maskStyle" :closable="false" :scrollable="true" :mask="true" title="购物车" width="18" v-model="value4">
-      <Table :data="ShoppingCartdata" :columns="columns" stripe></Table>
+      <Table style="position:absolute;height: 90%" :data="ShoppingCartdata" :columns="tableColumns" stripe>
+        <template slot-scope="{ row, index }" slot="action">
+          <Button type="error" size="small" style="margin-right: 5px" @click="Delete(index)">删除</Button>
+        </template>
+      </Table>
+      <Button type="primary" @click="submit" style="position: absolute;top:93%;">提交</Button>
     </Drawer>
   </div>
 </template>
@@ -25,22 +30,25 @@
     data () {
       return {
         name:"ShoppingCart",
+        tableColumns:[{
+          title:'名称',
+          key:'name'
+        },{
+          title:'数量',
+          width:50,
+          key:'num'
+        },{
+          title:'价格',
+          key:'price',
+          width:50
+        },{
+          title:'操作',
+          slot: 'action',
+          width: 60,
+          align: 'center'
+        }],//列
         value4: false,
         ShoppingCartdata:[],//购物车数据
-        columns:[
-          {
-            title:'名称',
-            key:'name'
-          },
-          {
-            title:'价格',
-            key:'price'
-          },
-          {
-            title:'数量',
-            key:'num'
-          }
-        ],
         pStyle: {
           fontSize: '16px',
           color: 'rgba(0,0,0,0.85)',
@@ -67,17 +75,19 @@
       let m =document.getElementById("Shopping")
       m.style.height =window.innerHeight + 'px'
     },
-    created(){
-      //显示购物车中的内容
-      //this.ShoppingCartdata=JSON.parse(this.$getCookie("orderItems"))
-    },
     methods:{
+      Delete(index){
+        this.ShoppingCartdata.splice(index,index+1)
+        this.$setCookie("orderItems",JSON.stringify(this.ShoppingCartdata))
+      },
+      submit() {
+        this.$router.push("/checkout")
+      },
       ButtonClick(){
         this.value4=true
         let m =document.getElementById("Shopping")
         m.style.marginLeft= '80.4%'
         this.ShoppingCartdata = JSON.parse(this.$getCookie("orderItems"))
-        console.log(this.ShoppingCartdata)
       },
       DrawerClose(){
         let m =document.getElementById("Shopping")

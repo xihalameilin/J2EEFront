@@ -1,16 +1,15 @@
-<template style="background-color: #9ea7b4">
+<template>
   <div>
     <ShoppingCart></ShoppingCart>
     <NavBar></NavBar>
     <PersonBar></PersonBar>
 
     <!--订单界面-->
-      <div :style="ContentStyle" v-show="orderflag">
-        <br>
-        <label style="margin-left: 3%">近三个月的订单</label>
-        <Divider style="margin-top: 3px;" dashed></Divider>
-        <div style="background-color: white">
-          <Table :data="tableData1" :columns="tableColumns1" stripe>
+    <div  style="position:absolute;left:20%;top:20%;width:70%;" v-show="orderflag">
+      <br>
+      <label style="position:absolute;left:0;top:0;margin-left: 3%;font-size: 18px">近三个月的订单</label>
+      <div style="position:absolute;left:0%;top:5%;width:100%;height:70%;background-color: white;">
+        <Table style="position:absolute;height: 100%" :data="tableData1" :columns="tableColumns1" stripe>
           <template slot-scope="{ row, index }" slot="action">
             <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">订单详情</Button>
             <Button type="error" size="small" style="margin-right: 5px" @click="Again(index)">再来一份</Button>
@@ -20,24 +19,17 @@
               <Page :total="total" :current="1" @on-change="changePage"></Page>
             </div>
           </div>
-          </Table>
-        </div>
+        </Table>
       </div>
+    </div>
 
     <!--订单详情界面-->
-    <div :style="ContentStyle" v-show="orderDetail">
+    <div style="position:absolute;left:20%;top:20%;width:70%;height:70%;" v-show="orderDetail">
       <br>
       <label style="margin-left: 2%">订单详情</label>
-      <Button style="margin-left:30%" @click="back">返回</Button>
       <Divider style="margin-top: 3px;" dashed></Divider>
-      <!--管理订单状态-->
-      <div>
-
-      </div>
-      <!--显示单品-->
-      <div>
-
-      </div>
+      <Table style="position:absolute;top:10%" :data="orderdetaildata" :columns="orderdetail"></Table>
+      <Button type="primary" style="margin-top: 2%;margin-left:44%" @click="back">返回</Button>
     </div>
   </div>
 </template>
@@ -57,7 +49,19 @@
         orderDetail:false,
         total:0,
         orderdetaildata:[],//订单详情数据
-        orderdetail:[],//订单表格内容
+        orderdetail:[{
+          title:'名称',
+          key:'name'
+        },{
+          title:'数量',
+          key:'num'
+        },{
+          title:'单价',
+          key:'price'
+        },{
+          title:'总价',
+          key:'total'
+        }],//订单表格内容
         tableData:[],//保存全部订单数据
         tableData1:[//当时改变了页数的订单数据
         ],
@@ -70,24 +74,17 @@
         },{
           title:'状态',
           key:'status',
-      },{
+        },{
           title:'操作',
           slot: 'action',
           width: 150,
           align: 'center'
         }],
-        ContentStyle:{
-          backgroundColor: 'white',
-          fontSize: '15px',
-          fontWeight: 'bold',
-          width: '70%',
-          border:' 1px solid #d7dde4',
-          marginLeft:'18%',
-          float:'left',
-          marginTop:'-40%',
-        },
 
       }
+    },
+    mounted(){
+      document.querySelector('body').setAttribute('style', 'background-color:#f7f7f7');
     },
     created(){
       //拿取3个月的订单数据
@@ -95,7 +92,11 @@
       var usercookie = this.$getCookie("userID")
       this.$http.get('api/OrderController/GetThreeMonths/'+usercookie,{
       }).then(function (response) {
+        response.data.sort(function(a,b){
+          return b.date.localeCompare(a.date);
+        })
         self.tableData=response.data
+
         for(var i =0 ; i<self.tableData.length ; i++){
           if(self.tableData[i]["state"]==0){
             self.tableData[i]["status"]="待付款"
@@ -114,12 +115,36 @@
         var self = this
         this.$http.get('api/OrderController/getAllOrderItems/'+orderID,{
         }).then(function (response) {
+          console.log(response.data)
           self.orderdetaildata=response.data
         })
       },
       //再来一份
       Again(index){
-
+        var self = this
+        var orderID = this.tableData1[index]["id"]
+        this.$http.get('api/OrderController/getAllOrderItems/'+orderID,{
+        }).then(function (response) {
+          self.orderdetaildata=response.data
+          var orderItem=[]
+          console.log(response.data)
+          for (var i =0 ; i<self.orderdetaildata.length ; i++){
+            var obj={}
+            obj['iid'] = self.orderdetaildata[i]['iid']
+            obj['name'] = self.orderdetaildata[i]['name']
+            obj['price'] = self.orderdetaildata[i]['price']
+            obj['num'] = self.orderdetaildata[i]['num']
+            obj['total'] = self.orderdetaildata[i]['total']
+            orderItem.push(obj)
+          }
+          self.$setCookie("orderItems",JSON.stringify(orderItem))
+          self.$router.push({
+            name:'shopdetail',
+            params:{
+              id:self.tableData1[index].shopID
+            }
+          })
+        })
       },
       //分页
       changePage () {

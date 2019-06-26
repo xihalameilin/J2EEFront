@@ -21,15 +21,15 @@
       <div class="overflow" style="position:absolute;left:0;top:25%;width:100%;height:60%">
         <div id="goodsDiv" v-for="item in goodsList" style="float:left;width:100%;height:25%;">
           <div style="position:absolute;left:0;width:100%;height:20%;">
-            <p style="position:absolute;left:10%;top:20%;font-size: 16px">{{item.name}}</p>
+            <p class="font3" style="position:absolute;left:10%;top:20%;width:30%;font-size: 16px">{{item.name}}</p>
             <p style="position: absolute;left: 45%;top:20%;font-size: 16px">x{{item.num}}</p>
-            <p style="position: absolute;left: 70%;top:20%;font-size: 16px">￥{{item.price}}</p>
+            <p style="position: absolute;left: 70%;top:20%;font-size: 16px">￥{{item.total}}</p>
             <div style="position:absolute;left:0%;top:80%;width:100%;height: 1px;background-color: #cdcdcd"></div>
           </div>
         </div>
       </div>
       <p style="position:absolute;left:30%;bottom:5%;font-size: 30px;color: black;">总计：</p>
-      <p style="position:absolute;left:55%;bottom:2%;font-size: 45px;color: red;">¥35.5</p>
+      <p id="total" style="position:absolute;left:55%;bottom:2%;font-size: 45px;color: red;">¥{{total}}</p>
     </div>
 
     <div style="position:absolute;right:4%;top:28%;width:60%;height:70%;border: 1px solid #cdcdcd;background-color: white">
@@ -48,7 +48,7 @@
       <p style="position:absolute;left:3%;top:60%;font-size: 20px;font-weight: bold">其他信息</p>
       <p style="position:absolute;left:4%;top:70%;font-size: 16px;">配送方式&ensp;&ensp;&ensp;本订单由<span style="color: #008de1">蜂鸟专送</span>配送</p>
 
-      <Button type="error" style="position:absolute;left:5%;top:85%">确认下单</Button>
+      <Button type="error" style="position:absolute;left:5%;top:85%" @click="submit">确认下单</Button>
     </div>
   </div>
 </template>
@@ -61,34 +61,69 @@
       data(){
           return{
             address:'',
+            total:'',
             addressList:[
-              {
 
-              }
             ],
             goodsList:[
-              {name:"冒菜",num:"2",price:"15.00"},
-              {name:"冒菜",num:"2",price:"15.00"},
-              {name:"冒菜",num:"2",price:"15.00"},
-              {name:"冒菜",num:"2",price:"15.00"},
-              {name:"冒菜",num:"2",price:"15.00"},
-              {name:"冒菜",num:"2",price:"15.00"}
+
             ]
           }
       },
 
 
       created(){
-
+        this.getAllAddress();
+        this.showGoodsList();
       },
 
       methods:{
-        getAllAddresses(){
+
+        submit(){
+
+          var shopID= this.$getCookie("shopID")
+          var userID = this.$getCookie("userID")
+          var address = this.address
+          if(address==''|address.length==0){
+            this.$Message.error("请先选择地址")
+            return
+          }
+          var name = this.$getCookie("shopname")
           var self = this
-          this.$http.get()
-            .then(function(response){
+          this.$http({
+            url:"api/OrderController/insertOrder",
+            method:'post',
+            headers:{"Content-Type": "application/json;charset=UTF-8"},
+            data:JSON.stringify({
+              "shopID":shopID,
+              "userID":userID,
+              "address":address,
+              "name":name,
+              "total":self.total,
+              "orderItems":self.goodsList
+            })
+          }).then(function (response) {
+            self.$setCookie("orderItems","")
+            self.$Message.success("下单成功")
+            self.$router.push("/mainPage")
+          })
+
+        },
+        getAllAddress:function(){
+          var userID = this.$getCookie("userID");
+          var self = this;
+          this.$http.get('api/UserController/getAllAddresses/'+userID).then(function (response) {
             self.addressList = response.data
           })
+        },
+        showGoodsList(){
+          var goodsList = JSON.parse(this.$getCookie("orderItems"));
+          this.goodsList = goodsList;
+          var total = 0;
+          for(var i=0;i<goodsList.length;i++){
+            total = total + goodsList[i].total;
+          }
+          this.total = total;
         }
       }
     }

@@ -3,13 +3,10 @@
     <ShoppingCart></ShoppingCart>
     <NavBar></NavBar>
     <PersonBar></PersonBar>
-    <div :style="ContentStyle" >
-      <br>
-      <label style="margin-left: 3%">个人资料</label>
-      <br>
-      <Divider dashed></Divider>
-       <label style="margin-left: 5%">头像</label>
-      <img src="../images/default_avator.png" style="width:25%; height: 200px">
+    <div style="position:absolute;left:20%;top:15%;width:70%;height:70%;font-size: 18px;background-color: white;border:1px solid #d7dde4">
+      <label style="position:absolute;;left: 3%;top:0;">个人资料</label>
+      <label style="position: absolute;left:5%;top:15%">头像</label>
+      <img src="../images/default_avator.png" style="position:absolute;left:15%;top:5%;width:25%; height: 200px">
     </div>
   </div>
 </template>
@@ -22,6 +19,9 @@
       ShoppingCart,
       NavBar,
       PersonBar
+    },
+    mounted(){
+      document.querySelector('body').setAttribute('style', 'background-color:#f7f7f7');
     },
     data(){
       return{
