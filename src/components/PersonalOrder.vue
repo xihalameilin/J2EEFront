@@ -14,11 +14,6 @@
             <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">订单详情</Button>
             <Button type="error" size="small" style="margin-right: 5px" @click="Again(index)">再来一份</Button>
           </template>
-          <div style="margin: 10px;overflow: hidden">
-            <div style="float: right;">
-              <Page :total="total" :current="1" @on-change="changePage"></Page>
-            </div>
-          </div>
         </Table>
       </div>
     </div>
@@ -66,14 +61,14 @@
         tableData1:[//当时改变了页数的订单数据
         ],
         tableColumns1:[{
-          title:'下单时间',
-          key:'date'
+          title:"商店名称",
+          key:'name'
         },{
+            title:'下单时间',
+            key:'date'
+      },{
           title:'支付金额',
           key:'total',
-        },{
-          title:'状态',
-          key:'status',
         },{
           title:'操作',
           slot: 'action',
@@ -96,12 +91,6 @@
           return b.date.localeCompare(a.date);
         })
         self.tableData=response.data
-
-        for(var i =0 ; i<self.tableData.length ; i++){
-          if(self.tableData[i]["state"]==0){
-            self.tableData[i]["status"]="待付款"
-          }
-        }
         self.tableData1=response.data
       })
     },
@@ -115,7 +104,6 @@
         var self = this
         this.$http.get('api/OrderController/getAllOrderItems/'+orderID,{
         }).then(function (response) {
-          console.log(response.data)
           self.orderdetaildata=response.data
         })
       },
@@ -145,10 +133,6 @@
             }
           })
         })
-      },
-      //分页
-      changePage () {
-
       },
       back(){
         this.orderDetail=false
